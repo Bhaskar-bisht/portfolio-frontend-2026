@@ -101,9 +101,9 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                         <>
                             <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMobileOpen(false)}>
                                 {/* Logo */}
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-800 flex items-center justify-center shadow-lg flex-shrink-0">
+                                {/* <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-800 flex items-center justify-center shadow-lg flex-shrink-0">
                                     <span className="text-white font-bold text-xl">B</span>
-                                </div>
+                                </div> */}
 
                                 {/* Brand Name */}
                                 <span className="font-bold text-lg text-gray-900 dark:text-white whitespace-nowrap">
@@ -136,7 +136,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                                 className={({ isActive }) => `
                   group relative flex items-center rounded-xl
                   transition-all duration-200
-                  ${isExpanded ? "gap-3 px-3 py-2.5" : "justify-center p-3"}
+                  ${isExpanded ? "gap-3 p-3" : "justify-center p-3"}
                   ${
                       isActive
                           ? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 shadow-sm"
