@@ -1,6 +1,6 @@
 /** @format */
 
-// src/store/themeSlice.js
+// src/store/slices/themeSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 // Get initial theme from localStorage or system preference
@@ -12,28 +12,40 @@ const getInitialTheme = () => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
+// Apply initial theme
+const initialTheme = getInitialTheme();
+if (initialTheme === "dark") {
+    document.documentElement.classList.add("dark");
+} else {
+    document.documentElement.classList.remove("dark");
+}
+
 const themeSlice = createSlice({
     name: "theme",
     initialState: {
-        mode: getInitialTheme(),
+        mode: initialTheme,
+        isAnimating: false,
     },
     reducers: {
-        toggleTheme: (state) => {
+        toggleTheme: (state, action) => {
             state.mode = state.mode === "light" ? "dark" : "light";
             localStorage.setItem("theme", state.mode);
 
-            // Update document class
-            if (state.mode === "dark") {
-                document.documentElement.classList.add("dark");
-            } else {
-                document.documentElement.classList.remove("dark");
-            }
+            // Animation trigger - coordinates from button click
+            state.isAnimating = true;
+            state.animationOrigin = action.payload; // { x, y }
         },
         setTheme: (state, action) => {
-            state.mode = action.payload;
-            localStorage.setItem("theme", action.payload);
+            state.mode = action.payload.mode;
+            localStorage.setItem("theme", action.payload.mode);
+            state.isAnimating = true;
+            state.animationOrigin = action.payload.origin;
+        },
+        finishAnimation: (state) => {
+            state.isAnimating = false;
 
-            if (action.payload === "dark") {
+            // Update document class after animation
+            if (state.mode === "dark") {
                 document.documentElement.classList.add("dark");
             } else {
                 document.documentElement.classList.remove("dark");
@@ -42,5 +54,5 @@ const themeSlice = createSlice({
     },
 });
 
-export const { toggleTheme, setTheme } = themeSlice.actions;
+export const { toggleTheme, setTheme, finishAnimation } = themeSlice.actions;
 export default themeSlice.reducer;

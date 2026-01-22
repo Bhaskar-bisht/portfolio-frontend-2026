@@ -1,11 +1,11 @@
 /** @format */
 
 // src/App.jsx
-import { Suspense, lazy, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { Suspense, lazy } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader";
+import ThemeTransition from "./components/ThemeTransition";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -19,19 +19,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
-    const theme = useSelector((state) => state.theme.mode);
-
-    // Apply theme to document
-    useEffect(() => {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }, [theme]);
-
     return (
         <Router>
+            <ThemeTransition />
             <Suspense fallback={<Loader />}>
                 <Routes>
                     <Route path="/" element={<Layout />}>

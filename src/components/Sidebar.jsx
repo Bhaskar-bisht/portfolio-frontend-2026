@@ -15,7 +15,7 @@ import {
     User,
     X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { toggleTheme } from "../store/slices/themeSlice.";
@@ -24,6 +24,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const theme = useSelector((state) => state.theme.mode);
     const dispatch = useDispatch();
+    const themeButtonRef = useRef(null);
 
     // Close mobile sidebar on route change
     useEffect(() => {
@@ -32,12 +33,25 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
 
     const navItems = [
         { name: "Home", path: "/", icon: Home },
-        { name: "Projects", path: "/projects", icon: Cuboid },
+        { name: "Products", path: "/projects", icon: Cuboid },
         { name: "About", path: "/about", icon: User },
         { name: "Blog", path: "/blog", icon: Newspaper },
         { name: "Services", path: "/services", icon: Computer },
         { name: "Contact", path: "/contact", icon: MonitorUp },
     ];
+
+    const handleThemeToggle = (e) => {
+        const button = themeButtonRef.current;
+        if (!button) return;
+
+        // Get button position
+        const rect = button.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        // Dispatch with coordinates
+        dispatch(toggleTheme({ x, y }));
+    };
 
     return (
         <>
@@ -76,7 +90,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
           ${isExpanded ? "w-64" : "w-20"}
         `}
             >
-                {/* Header - Fixed, no scroll */}
+                {/* Header */}
                 <div
                     className={`
             flex items-center h-16 
@@ -85,7 +99,6 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
             ${isExpanded ? "px-4 justify-between" : "px-0 justify-center"}
           `}
                 >
-                    {/* Collapsed State - Only Toggle Button */}
                     {!isExpanded && (
                         <button
                             onClick={() => setIsExpanded(true)}
@@ -96,22 +109,14 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                         </button>
                     )}
 
-                    {/* Expanded State - Logo + Brand + Close Button */}
                     {isExpanded && (
                         <>
                             <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMobileOpen(false)}>
-                                {/* Logo */}
-                                {/* <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-800 flex items-center justify-center shadow-lg flex-shrink-0">
-                                    <span className="text-white font-bold text-xl">B</span>
-                                </div> */}
-
-                                {/* Brand Name */}
                                 <span className="font-bold text-lg text-gray-900 dark:text-white whitespace-nowrap">
                                     bhaskar
                                 </span>
                             </Link>
 
-                            {/* Close Button */}
                             <button
                                 onClick={() => setIsExpanded(false)}
                                 className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 flex-shrink-0"
@@ -123,7 +128,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                     )}
                 </div>
 
-                {/* Navigation - Scrollable area */}
+                {/* Navigation */}
                 <nav className="flex-1 p-3 space-y-1 overflow-y-auto overflow-x-hidden">
                     {navItems.map((item) => {
                         const Icon = item.icon;
@@ -144,7 +149,6 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                   }
                 `}
                             >
-                                {/* Icon */}
                                 <Icon
                                     className={`
                     w-5 h-5 flex-shrink-0 transition-transform duration-200
@@ -152,23 +156,12 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                   `}
                                 />
 
-                                {/* Label */}
                                 {isExpanded && (
                                     <span className="font-medium text-sm whitespace-nowrap">{item.name}</span>
                                 )}
 
-                                {/* Tooltip */}
                                 {!isExpanded && (
-                                    <div
-                                        className="
-                    absolute left-full ml-2 px-3 py-1.5 
-                    bg-gray-900 dark:bg-gray-700 text-white text-sm 
-                    rounded-lg shadow-lg
-                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                    transition-all duration-200 whitespace-nowrap z-50
-                    pointer-events-none
-                  "
-                                    >
+                                    <div className="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
                                         {item.name}
                                         <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700" />
                                     </div>
@@ -178,10 +171,11 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                     })}
                 </nav>
 
-                {/* Theme Toggle Footer - Fixed at bottom */}
+                {/* Theme Toggle Footer */}
                 <div className="p-3 border-t border-gray-200 dark:border-gray-800 flex-shrink-0">
                     <button
-                        onClick={() => dispatch(toggleTheme())}
+                        ref={themeButtonRef}
+                        onClick={handleThemeToggle}
                         className={`
               group relative flex items-center w-full rounded-xl
               transition-all duration-200
@@ -190,7 +184,6 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
               ${isExpanded ? "gap-3 px-3 py-2.5" : "justify-center p-3"}
             `}
                     >
-                        {/* Theme Icon */}
                         {theme === "dark" ? (
                             <Sun
                                 className={`w-5 h-5 text-yellow-500 flex-shrink-0 transition-transform group-hover:rotate-45 duration-300 ${!isExpanded && "mx-auto"}`}
@@ -201,25 +194,14 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                             />
                         )}
 
-                        {/* Label */}
                         {isExpanded && (
                             <span className="font-medium text-sm whitespace-nowrap">
                                 {theme === "dark" ? "Light Mode" : "Dark Mode"}
                             </span>
                         )}
 
-                        {/* Tooltip */}
                         {!isExpanded && (
-                            <div
-                                className="
-                absolute left-full ml-2 px-3 py-1.5 
-                bg-gray-900 dark:bg-gray-700 text-white text-sm 
-                rounded-lg shadow-lg
-                opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                transition-all duration-200 whitespace-nowrap z-50
-                pointer-events-none
-              "
-                            >
+                            <div className="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
                                 {theme === "dark" ? "Light Mode" : "Dark Mode"}
                                 <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700" />
                             </div>
