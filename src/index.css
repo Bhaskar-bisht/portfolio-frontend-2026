@@ -76,6 +76,19 @@
   }
 }
 
+@keyframes slideRight {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+.animate-slide-right {
+  animation: slideRight 1s ease-out forwards;
+}
+
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out;
 }

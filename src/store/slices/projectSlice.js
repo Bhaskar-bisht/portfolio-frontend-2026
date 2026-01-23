@@ -1,5 +1,8 @@
 /** @format */
 
+// src/store/slices/projectSlice.js (rename from productSlice.js)
+/** @format */
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getProjectsData } from "../../utils/api";
 
@@ -7,8 +10,10 @@ import { getProjectsData } from "../../utils/api";
 export const fetchProjects = createAsyncThunk("project/fetchProjects", async (_, { rejectWithValue }) => {
     try {
         const response = await getProjectsData();
+        console.log("Projects API Response:", response); // Debug
         return response.data;
     } catch (error) {
+        console.error("Projects API Error:", error); // Debug
         return rejectWithValue(error.message || "Failed to fetch projects");
     }
 });
