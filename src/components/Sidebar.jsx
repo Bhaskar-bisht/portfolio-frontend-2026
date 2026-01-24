@@ -2,9 +2,9 @@
 
 // src/components/Sidebar.jsx
 import {
-    Computer,
     Cuboid,
     Home,
+    Library,
     Menu,
     MonitorUp,
     Moon,
@@ -13,6 +13,7 @@ import {
     PanelRight,
     Sun,
     User,
+    Waypoints,
     X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -36,7 +37,9 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
         { name: "Products", path: "/projects", icon: Cuboid },
         { name: "About", path: "/about", icon: User },
         { name: "Blog", path: "/blog", icon: Newspaper },
-        { name: "Services", path: "/services", icon: Computer },
+        // { name: "Services", path: "/services", icon: Computer },
+        { name: "Social Links", path: "/social-links", icon: Waypoints },
+        { name: "Education", path: "/education", icon: Library },
         { name: "Contact", path: "/contact", icon: MonitorUp },
     ];
 

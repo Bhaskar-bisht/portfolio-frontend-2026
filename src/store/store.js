@@ -5,8 +5,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // localStorage
 import blogReducer from "./slices/blogSlice";
+import educationReducer from "./slices/educationSlice";
 import productReducer from "./slices/projectSlice";
 import serviceReducer from "./slices/servicesSlice";
+import socialLinksReducer from "./slices/socialLinkSlice";
 import themeReducer from "./slices/themeSlice.";
 import userReducer from "./slices/userSlice";
 
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
     product: productReducer,
     blog: blogReducer,
     service: serviceReducer,
+    social: socialLinksReducer,
+    education: educationReducer,
 });
 
 // Persisted reducer

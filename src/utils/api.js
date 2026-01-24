@@ -30,3 +30,4 @@ export const getProjectsData = () => fetchFromAPI(API_ROUTES.projects);
 export const getBlogsData = () => fetchFromAPI(API_ROUTES.blogs);
 export const getServicesData = () => fetchFromAPI(API_ROUTES.services);
 export const getTechnologiesData = () => fetchFromAPI(API_ROUTES.technologies);
+export const getSocialLinks = () => fetchFromAPI(API_ROUTES.socialLinks);
