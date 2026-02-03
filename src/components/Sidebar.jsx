@@ -1,21 +1,7 @@
 /** @format */
 
 // src/components/Sidebar.jsx
-import {
-    Cuboid,
-    Home,
-    Library,
-    Menu,
-    MonitorUp,
-    Moon,
-    Newspaper,
-    PanelLeft,
-    PanelRight,
-    Sun,
-    User,
-    Waypoints,
-    X,
-} from "lucide-react";
+import { Cuboid, Home, Library, Menu, Moon, PanelLeft, PanelRight, Send, Sun, Waypoints, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
@@ -35,12 +21,12 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
     const navItems = [
         { name: "Home", path: "/", icon: Home },
         { name: "Products", path: "/projects", icon: Cuboid },
-        { name: "About", path: "/about", icon: User },
-        { name: "Blog", path: "/blog", icon: Newspaper },
+        // { name: "About", path: "/about", icon: User },
+        // { name: "Blog", path: "/blog", icon: Newspaper },
         // { name: "Services", path: "/services", icon: Computer },
         { name: "Social Links", path: "/social-links", icon: Waypoints },
         { name: "Education", path: "/education", icon: Library },
-        { name: "Contact", path: "/contact", icon: MonitorUp },
+        { name: "Contact", path: "/contact", icon: Send },
     ];
 
     const handleThemeToggle = (e) => {
@@ -103,30 +89,48 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
           `}
                 >
                     {!isExpanded && (
-                        <button
-                            onClick={() => setIsExpanded(true)}
-                            className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
-                            aria-label="Expand sidebar"
-                        >
-                            <PanelRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                        </button>
+                        <div className="relative group">
+                            <button
+                                onClick={() => setIsExpanded(true)}
+                                className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                                aria-label="Expand sidebar"
+                            >
+                                <PanelRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                            </button>
+
+                            {/* Tooltip for Expand Button */}
+                            <div className="absolute left-full ml-4 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none top-1/2 -translate-y-1/2">
+                                Expand Sidebar
+                                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-[-4px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-gray-900 dark:border-r-gray-700" />
+                            </div>
+                        </div>
                     )}
 
                     {isExpanded && (
                         <>
-                            <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMobileOpen(false)}>
+                            <Link to="/" className="flex items-center gap-1" onClick={() => setIsMobileOpen(false)}>
+                                <span className="text-primary-600 dark:text-primary-400 font-bold text-lg">&lt;</span>
                                 <span className="font-bold text-lg text-gray-900 dark:text-white whitespace-nowrap">
                                     bhaskar
                                 </span>
+                                <span className="text-primary-600 dark:text-primary-400 font-bold text-lg">/&gt;</span>
                             </Link>
 
-                            <button
-                                onClick={() => setIsExpanded(false)}
-                                className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 flex-shrink-0"
-                                aria-label="Collapse sidebar"
-                            >
-                                <PanelLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                            </button>
+                            <div className="relative group">
+                                <button
+                                    onClick={() => setIsExpanded(false)}
+                                    className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 flex-shrink-0"
+                                    aria-label="Collapse sidebar"
+                                >
+                                    <PanelLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                </button>
+
+                                {/* Tooltip for Collapse Button */}
+                                <div className="absolute left-full ml-4 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none top-1/2 -translate-y-1/2">
+                                    Collapse Sidebar
+                                    <div className="absolute right-full top-1/2 -translate-y-1/2 mr-[-4px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-gray-900 dark:border-r-gray-700" />
+                                </div>
+                            </div>
                         </>
                     )}
                 </div>
@@ -163,10 +167,11 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                                     <span className="font-medium text-sm whitespace-nowrap">{item.name}</span>
                                 )}
 
+                                {/* Tooltip - Show when sidebar is collapsed */}
                                 {!isExpanded && (
-                                    <div className="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
+                                    <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
                                         {item.name}
-                                        <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700" />
+                                        <div className="absolute right-full top-1/2 -translate-y-1/2 mr-[-4px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-gray-900 dark:border-r-gray-700" />
                                     </div>
                                 )}
                             </NavLink>
@@ -203,10 +208,11 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                             </span>
                         )}
 
+                        {/* Tooltip for Theme Toggle */}
                         {!isExpanded && (
-                            <div className="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
+                            <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 pointer-events-none">
                                 {theme === "dark" ? "Light Mode" : "Dark Mode"}
-                                <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-gray-700" />
+                                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-[-4px] w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-gray-900 dark:border-r-gray-700" />
                             </div>
                         )}
                     </button>

@@ -60,7 +60,7 @@ export const Education = () => {
                     {sortedEducation.map((edu, index) => (
                         <div
                             key={edu.id}
-                            className="transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl rounded-xl overflow-hidden animate-fadeIn"
+                            className="transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl rounded-3xl overflow-hidden animate-fadeIn"
                             style={{
                                 backgroundColor: cardColors[edu.id] || getLightRandomColor(),
                                 animationDelay: `${index * 100}ms`,
@@ -87,7 +87,7 @@ export const Education = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-4 py-2 rounded-lg">
+                                    <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-4 py-2 rounded-3xl">
                                         <Calendar className="w-4 h-4" />
                                         <span>
                                             {new Date(edu.start_date).getFullYear()} -{" "}
@@ -104,13 +104,13 @@ export const Education = () => {
                                 )}
 
                                 {edu.description && (
-                                    <div className="bg-white p-4 rounded-lg mb-3">
+                                    <div className="bg-white p-4 rounded-3xl mb-3">
                                         <p className="text-gray-700 text-sm leading-relaxed">{edu.description}</p>
                                     </div>
                                 )}
 
                                 {edu.achievements && (
-                                    <div className="bg-white p-4 rounded-lg">
+                                    <div className="bg-white p-4 rounded-3xl">
                                         <div className="flex items-center gap-2 mb-2">
                                             <Award className="w-5 h-5 text-yellow-600" />
                                             <h4 className="font-semibold text-gray-800">Achievements</h4>

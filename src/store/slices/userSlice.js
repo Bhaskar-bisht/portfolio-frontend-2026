@@ -8,6 +8,7 @@ import { getProfileData } from "../../utils/api";
 export const fetchUserProfile = createAsyncThunk("user/fetchProfile", async (_, { rejectWithValue }) => {
     try {
         const response = await getProfileData();
+        console.log("this is data", fetchUserProfile);
         return response.data;
     } catch (error) {
         return rejectWithValue(error.message || "Failed to fetch profile");

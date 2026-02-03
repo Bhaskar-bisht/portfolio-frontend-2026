@@ -57,7 +57,7 @@ const SocialLink = () => {
                     {activeSocialLinks.map((social, index) => (
                         <div
                             key={social.id}
-                            className="transform hover:scale-105 transition-all duration-300 hover:shadow-xl rounded-xl overflow-hidden animate-fadeIn"
+                            className="transform hover:scale-105 transition-all duration-300 hover:shadow-xl rounded-3xl overflow-hidden animate-fadeIn"
                             style={{
                                 backgroundColor: cardColors[social.id] || getLightRandomColor(),
                                 animationDelay: `${index * 100}ms`,
@@ -66,7 +66,7 @@ const SocialLink = () => {
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center gap-3">
-                                        <div className="p-3 bg-white rounded-lg shadow-sm">{social.platform}</div>
+                                        <div className="p-3 bg-white rounded-3xl shadow-sm">{social.platform}</div>
                                         <div>
                                             <h3 className="font-semibold text-lg text-gray-800">{social.platform}</h3>
                                             {social.username && (
@@ -84,7 +84,7 @@ const SocialLink = () => {
                                     href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block p-3 bg-white rounded-lg text-blue-600 hover:text-blue-800 transition-colors duration-200 text-sm font-medium truncate hover:bg-blue-50"
+                                    className="block p-3 bg-white rounded-3xl text-blue-600 hover:text-blue-800 transition-colors duration-200 text-sm font-medium truncate hover:bg-blue-50"
                                 >
                                     {social.url}
                                 </a>

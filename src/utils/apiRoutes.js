@@ -10,6 +10,7 @@ export const API_ROUTES = {
     achievements: "profile/achievements",
     socialLinks: "profile/social-links",
     projects: "projects",
+    projectDetail: "projects/",
     projectsFeatured: "projects/featured",
     blogs: "blogs",
     blogsFeatured: "blogs/featured",
@@ -20,4 +21,5 @@ export const API_ROUTES = {
     technologiesFeatured: "technologies/featured",
     testimonials: "testimonials",
     testimonialsFeatured: "testimonials/featured",
+    contact: "contact", // Add this line
 };

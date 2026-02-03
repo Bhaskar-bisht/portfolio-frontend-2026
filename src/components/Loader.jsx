@@ -5,7 +5,8 @@
 const Loader = ({ fullScreen = true }) => {
     if (fullScreen) {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
+            // fixed inset-0 ki jagah ye classes use karo
+            <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
                 <div className="relative">
                     {/* Outer rotating ring */}
                     <div className="w-20 h-20 border-4 border-primary-200 dark:border-primary-900 rounded-full"></div>

@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogs } from "../store/slices/blogSlice";
 import Loader from "../components/Loader";
+import { fetchBlogs } from "../store/slices/blogSlice";
 
 const Blog = () => {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Blog = () => {
                     <p className="text-gray-600 dark:text-gray-400 mb-4">{error}</p>
                     <button
                         onClick={() => dispatch(fetchBlogs())}
-                        className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+                        className="px-6 py-3 bg-primary-600 text-white rounded-3xl hover:bg-primary-700"
                     >
                         Retry
                     </button>
@@ -50,7 +50,7 @@ const Blog = () => {
                     {blogs.map((blog, index) => (
                         <article
                             key={blog.id}
-                            className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all animate-fade-in"
+                            className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all animate-fade-in"
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             {blog.featured_image && (

@@ -6,6 +6,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // localStorage
 import blogReducer from "./slices/blogSlice";
 import educationReducer from "./slices/educationSlice";
+import projectDetailReducer from "./slices/projectDetailSlice";
 import productReducer from "./slices/projectSlice";
 import serviceReducer from "./slices/servicesSlice";
 import socialLinksReducer from "./slices/socialLinkSlice";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     service: serviceReducer,
     social: socialLinksReducer,
     education: educationReducer,
+    projectDetail: projectDetailReducer,
 });
 
 // Persisted reducer
