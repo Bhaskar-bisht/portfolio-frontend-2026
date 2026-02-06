@@ -2,7 +2,7 @@
 
 import { API_ROUTES } from "./apiRoutes";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://bhaskar-portfolio.gt.tc/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api";
 
 // Generic API fetch function
 export const fetchFromAPI = async (endpoint) => {
