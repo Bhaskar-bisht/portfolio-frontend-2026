@@ -70,17 +70,17 @@ const Home = () => {
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 opacity-0 animate-[slideUp_0.8s_ease-out_0.2s_forwards]">
                         Hi, I'm{" "}
                         <span className="text-primary-600 dark:text-primary-400 inline-block hover:scale-105 transition-transform duration-300">
-                            {profile?.name || "Bhaskar Bisht"}
+                            {profile?.name || "Bhaskar Bisht default"}
                         </span>
                     </h1>
 
                     <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 opacity-0 animate-[slideUp_0.8s_ease-out_0.4s_forwards]">
-                        {profile?.tagline || "Full Stack Developer specializing in Laravel & React"}
+                        {profile?.currentPosition || "Full Stack Developer specializing in Laravel & React default"}
                     </p>
 
                     <p className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto opacity-0 animate-[slideUp_0.8s_ease-out_0.6s_forwards]">
                         {profile?.bio ||
-                            "I build scalable web applications with modern technologies. Passionate about creating digital experiences that matter."}
+                            " default I build scalable web applications with modern technologies. Passionate about creating digital experiences that matter."}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[slideUp_0.8s_ease-out_0.8s_forwards]">
@@ -98,10 +98,10 @@ const Home = () => {
 
             {/* Stats Section */}
             <section className="py-20 border-t border-gray-200 dark:border-gray-800">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                     <div className="text-center group cursor-pointer">
                         <div className="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2 group-hover:scale-125 transition-all duration-300">
-                            {profile?.years_of_experience || "1"}+
+                            {profile?.yearsOfExperience || "1"}+
                         </div>
                         <div className="text-gray-600 dark:text-gray-400 group-hover:text-primary-500 transition-colors">
                             Years Experience
@@ -109,18 +109,10 @@ const Home = () => {
                     </div>
                     <div className="text-center group cursor-pointer">
                         <div className="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2 group-hover:scale-125 transition-all duration-300">
-                            20+
+                            10+
                         </div>
                         <div className="text-gray-600 dark:text-gray-400 group-hover:text-primary-500 transition-colors">
                             Projects Completed
-                        </div>
-                    </div>
-                    <div className="text-center group cursor-pointer">
-                        <div className="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2 group-hover:scale-125 transition-all duration-300">
-                            15+
-                        </div>
-                        <div className="text-gray-600 dark:text-gray-400 group-hover:text-primary-500 transition-colors">
-                            Happy Clients
                         </div>
                     </div>
                     <div className="text-center group cursor-pointer">
@@ -165,26 +157,26 @@ const Home = () => {
                                         Experience
                                     </span>
                                     <span className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">
-                                        {profile?.years_of_experience || 0}+ years
+                                        {profile?.yearsOfExperience || 0}+ years
                                     </span>
                                 </div>
                                 <div className="flex flex-col group cursor-pointer">
                                     <span className="text-sm text-gray-500 dark:text-gray-400 mb-1">Status</span>
                                     <span
                                         className={`text-base font-semibold flex items-center gap-2 ${
-                                            profile?.availability_status === "available"
+                                            profile?.availabilityStatus === "available"
                                                 ? "text-green-600 dark:text-green-400"
                                                 : "text-yellow-600 dark:text-yellow-400"
                                         }`}
                                     >
                                         <span
                                             className={`w-2 h-2 rounded-full animate-pulse ${
-                                                profile?.availability_status === "available"
+                                                profile?.availabilityStatus === "available"
                                                     ? "bg-green-600"
                                                     : "bg-yellow-600"
                                             }`}
                                         ></span>
-                                        {profile?.availability_status === "available" ? "Available" : "Busy"}
+                                        {profile?.availabilityStatus === "available" ? "Available" : "Busy"}
                                     </span>
                                 </div>
                             </div>
@@ -202,7 +194,7 @@ const Home = () => {
                                     Current Role
                                 </h3>
                                 <p className="text-xl font-bold text-gray-900 dark:text-white">
-                                    {profile?.current_position || "Full Stack Developer"}
+                                    {profile?.currentPosition || "Full Stack Developer"}
                                 </p>
                             </div>
                         </div>

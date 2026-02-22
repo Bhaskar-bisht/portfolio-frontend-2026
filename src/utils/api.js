@@ -2,12 +2,17 @@
 
 import { API_ROUTES } from "./apiRoutes";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://bhaskar-bist.great-site.net/api";
-
+// Development: /api (Vite proxy use karega)
+// Production: full URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api/portfolio";
 // Generic API fetch function
 export const fetchFromAPI = async (endpoint) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${endpoint}`);
+        const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+            headers: {
+                Accept: "application/json",
+            },
+        });
 
         if (!response.ok) {
             throw new Error(`API Error: ${response.statusText}`);

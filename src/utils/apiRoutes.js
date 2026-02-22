@@ -8,7 +8,7 @@ export const API_ROUTES = {
     experience: "profile/experience",
     certifications: "profile/certifications",
     achievements: "profile/achievements",
-    socialLinks: "profile/social-links",
+    socialLinks: "social-links",
     projects: "projects",
     projectDetail: "projects/",
     projectsFeatured: "projects/featured",
@@ -21,5 +21,5 @@ export const API_ROUTES = {
     technologiesFeatured: "technologies/featured",
     testimonials: "testimonials",
     testimonialsFeatured: "testimonials/featured",
-    contact: "contact", // Add this line
+    contact: "contact",
 };
