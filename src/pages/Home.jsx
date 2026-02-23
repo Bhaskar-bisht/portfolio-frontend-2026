@@ -203,7 +203,7 @@ const Home = () => {
             </section>
 
             {/* Skills Journey Section */}
-            {profile?.skills && profile.skills.filter((skill) => skill.is_primary_skill).length > 0 && (
+            {profile?.skills && profile.skills.filter((skill) => skill.isPrimarySkill).length > 0 && (
                 <section className="py-20 border-t border-gray-200 dark:border-gray-800">
                     <div className="mb-12 text-center opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]">
                         <div className="flex items-center justify-center gap-2 mb-4">
@@ -219,7 +219,7 @@ const Home = () => {
                     </div>
 
                     <div className="opacity-0 animate-[slideUp_0.8s_ease-out_0.4s_forwards]">
-                        <SkillsJourney skills={profile.skills.filter((skill) => skill.is_primary_skill)} />
+                        <SkillsJourney skills={profile.skills.filter((skill) => skill.isPrimarySkill)} />
                     </div>
                 </section>
             )}

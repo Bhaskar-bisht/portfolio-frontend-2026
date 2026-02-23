@@ -95,7 +95,7 @@ const SkillCard = ({ skill, containerRef, position }) => {
         setZIndex(maxZIndex + 1);
     };
 
-    const technology = skill.technology;
+    const technology = skill.technologyId;
     const cardColor = position.color;
     const lightBgColor = cardColor.bg;
     const lightBorderColor = cardColor.border;
@@ -155,7 +155,7 @@ const SkillCard = ({ skill, containerRef, position }) => {
                 <div className="flex items-center justify-between text-xs md:text-sm">
                     <span className="text-gray-600 dark:text-gray-400">Proficiency</span>
                     <span className="font-semibold" style={{ color: accentColor }}>
-                        {skill.proficiency_percentage}%
+                        {skill.proficiencyPercentage}%
                     </span>
                 </div>
 
@@ -174,7 +174,7 @@ const SkillCard = ({ skill, containerRef, position }) => {
                 <div className="flex items-center justify-between text-xs md:text-sm pt-1">
                     <span className="text-gray-600 dark:text-gray-400">Experience</span>
                     <span className="font-semibold text-gray-800 dark:text-gray-200">
-                        {skill.years_of_experience} {skill.years_of_experience === 1 ? "year" : "years"}
+                        {skill.yearsOfExperience} {skill.yearsOfExperience === 1 ? "year" : "years"}
                     </span>
                 </div>
             </div>
